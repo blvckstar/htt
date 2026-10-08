@@ -1,0 +1,651 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+
+:root {
+    --black: #080808;
+    --dark: #101010;
+    --cream: #eee8de;
+    --soft: #b9b1a7;
+    --red: #9d2929;
+    --line: rgba(238, 232, 222, 0.14);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--black);
+    color: var(--cream);
+    font-family: "DM Sans", sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+}
+
+/* FILM GRAIN */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.035;
+
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* AMBIENT LIGHT */
+
+.ambient {
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+
+    background: rgba(157, 41, 41, 0.08);
+
+    filter: blur(120px);
+
+    pointer-events: none;
+    z-index: -1;
+
+    top: 20%;
+    left: 50%;
+
+    transform: translateX(-50%);
+}
+
+/* HERO */
+
+.hero {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 40px 25px;
+
+    position: relative;
+}
+
+.hero-content {
+    max-width: 900px;
+}
+
+.eyebrow {
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 10px;
+    letter-spacing: 0.35em;
+
+    text-transform: uppercase;
+
+    color: var(--soft);
+
+    margin-bottom: 35px;
+
+    opacity: 0;
+
+    animation: fadeUp 1.2s ease forwards;
+}
+
+.hero h1 {
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(4rem, 11vw, 9rem);
+
+    line-height: 0.78;
+
+    font-weight: 300;
+
+    letter-spacing: -0.06em;
+
+    opacity: 0;
+
+    animation: fadeUp 1.4s ease 0.2s forwards;
+}
+
+.hero h1 em {
+    color: var(--red);
+    font-style: italic;
+}
+
+.hero-subtitle {
+    max-width: 550px;
+
+    margin: 45px auto 0;
+
+    color: var(--soft);
+
+    font-size: 16px;
+
+    line-height: 1.9;
+
+    opacity: 0;
+
+    animation: fadeUp 1.4s ease 0.5s forwards;
+}
+
+.begin-btn {
+    margin-top: 45px;
+
+    padding: 15px 30px;
+
+    border: 1px solid var(--line);
+
+    background: transparent;
+
+    color: var(--cream);
+
+    border-radius: 50px;
+
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 10px;
+
+    letter-spacing: 0.25em;
+
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    transition: all 0.4s ease;
+
+    opacity: 0;
+
+    animation: fadeUp 1.4s ease 0.8s forwards;
+}
+
+.begin-btn:hover {
+    background: var(--cream);
+    color: var(--black);
+
+    border-color: var(--cream);
+}
+
+.scroll-indicator {
+    position: absolute;
+
+    bottom: 35px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    color: var(--soft);
+
+    font-size: 9px;
+
+    letter-spacing: 0.25em;
+
+    text-transform: uppercase;
+
+    opacity: 0;
+
+    animation: fadeUp 1.4s ease 1.2s forwards;
+}
+
+.scroll-line {
+    width: 1px;
+    height: 45px;
+
+    background: linear-gradient(
+        to bottom,
+        var(--red),
+        transparent
+    );
+
+    margin: 12px auto 0;
+
+    animation: scrollPulse 2s ease infinite;
+}
+
+/* SECTIONS */
+
+.section {
+    max-width: 1000px;
+
+    margin: auto;
+
+    padding: 160px 30px;
+}
+
+.section-number {
+    font-size: 9px;
+
+    letter-spacing: 0.3em;
+
+    color: var(--red);
+
+    text-transform: uppercase;
+
+    margin-bottom: 30px;
+}
+
+.section h2 {
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(3rem, 7vw, 6rem);
+
+    line-height: 0.95;
+
+    font-weight: 300;
+
+    letter-spacing: -0.04em;
+
+    max-width: 800px;
+
+    margin-bottom: 45px;
+}
+
+.section h2 em {
+    font-style: italic;
+}
+
+.text {
+    max-width: 680px;
+
+    color: var(--soft);
+
+    font-size: 18px;
+
+    line-height: 2;
+}
+
+.text + .text {
+    margin-top: 25px;
+}
+
+.big-quote {
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(2rem, 5vw, 4rem);
+
+    font-style: italic;
+
+    line-height: 1.2;
+
+    max-width: 750px;
+
+    margin-top: 70px;
+
+    color: var(--cream);
+}
+
+/* DIVIDER */
+
+.divider {
+    width: 1px;
+
+    height: 100px;
+
+    margin: auto;
+
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        var(--red),
+        transparent
+    );
+}
+
+/* LOVER BOY */
+
+.lover-section {
+    position: relative;
+}
+
+.lover-word {
+    position: absolute;
+
+    right: 2%;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(5rem, 18vw, 15rem);
+
+    color: rgba(255,255,255,0.025);
+
+    pointer-events: none;
+
+    white-space: nowrap;
+}
+
+.symptoms {
+    margin-top: 70px;
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    border-top: 1px solid var(--line);
+
+    border-left: 1px solid var(--line);
+}
+
+.symptom {
+    padding: 35px;
+
+    border-right: 1px solid var(--line);
+
+    border-bottom: 1px solid var(--line);
+}
+
+.symptom-label {
+    display: block;
+
+    font-size: 9px;
+
+    letter-spacing: 0.25em;
+
+    text-transform: uppercase;
+
+    color: var(--soft);
+
+    margin-bottom: 15px;
+}
+
+.symptom-value {
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 28px;
+}
+
+/* APPRECIATION */
+
+.appreciation {
+    background: #0c0c0c;
+
+    max-width: none;
+}
+
+.appreciation-inner {
+    max-width: 1000px;
+
+    margin: auto;
+
+    padding: 160px 30px;
+}
+
+.appreciation-list {
+    margin-top: 70px;
+
+    border-top: 1px solid var(--line);
+}
+
+.appreciation-item {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 30px;
+
+    padding: 35px 5px;
+
+    border-bottom: 1px solid var(--line);
+
+    transition: padding 0.4s ease;
+}
+
+.appreciation-item:hover {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.appreciation-item span {
+    color: var(--red);
+
+    font-size: 11px;
+}
+
+.appreciation-item h3 {
+    font-family: "Cormorant Garamond", serif;
+
+    font-weight: 400;
+
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+}
+
+.appreciation-item p {
+    color: var(--soft);
+
+    font-size: 13px;
+
+    max-width: 330px;
+
+    text-align: right;
+
+    line-height: 1.7;
+}
+
+/* FINAL */
+
+.final {
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 100px 25px;
+}
+
+.final-inner {
+    max-width: 850px;
+}
+
+.final h2 {
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(4rem, 10vw, 8rem);
+
+    font-weight: 300;
+
+    line-height: 0.85;
+
+    letter-spacing: -0.05em;
+}
+
+.final h2 em {
+    color: var(--red);
+
+    font-style: italic;
+}
+
+.final-text {
+    max-width: 570px;
+
+    margin: 50px auto 0;
+
+    color: var(--soft);
+
+    line-height: 2;
+
+    font-size: 17px;
+}
+
+.signature {
+    margin-top: 55px;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 25px;
+
+    font-style: italic;
+}
+
+.heart {
+    color: var(--red);
+
+    font-size: 25px;
+
+    margin-top: 30px;
+
+    animation: heartbeat 2s ease infinite;
+}
+
+.footer {
+    text-align: center;
+
+    padding: 30px;
+
+    color: #555;
+
+    font-size: 9px;
+
+    letter-spacing: 0.2em;
+
+    text-transform: uppercase;
+}
+
+/* SCROLL REVEAL */
+
+.reveal {
+    opacity: 0;
+
+    transform: translateY(35px);
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+/* ANIMATIONS */
+
+@keyframes fadeUp {
+
+    from {
+        opacity: 0;
+
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+
+}
+
+@keyframes scrollPulse {
+
+    50% {
+        opacity: 0.25;
+    }
+
+}
+
+@keyframes heartbeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    15% {
+        transform: scale(1.2);
+    }
+
+    30% {
+        transform: scale(1);
+    }
+
+}
+
+/* MOBILE */
+
+@media (max-width: 650px) {
+
+    .hero {
+        min-height: 95vh;
+    }
+
+    .hero h1 {
+        font-size: clamp(4rem, 18vw, 6rem);
+    }
+
+    .hero-subtitle {
+        font-size: 14px;
+    }
+
+    .section {
+        padding: 110px 22px;
+    }
+
+    .section h2 {
+        font-size: 3.4rem;
+    }
+
+    .text {
+        font-size: 16px;
+    }
+
+    .symptoms {
+        grid-template-columns: 1fr;
+    }
+
+    .symptom {
+        padding: 27px;
+    }
+
+    .appreciation-inner {
+        padding: 110px 22px;
+    }
+
+    .appreciation-item {
+        display: block;
+    }
+
+    .appreciation-item h3 {
+        margin: 8px 0 12px;
+    }
+
+    .appreciation-item p {
+        text-align: left;
+    }
+
+    .lover-word {
+        font-size: 5rem;
+    }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+
+        transition-duration: 0.01ms !important;
+    }
+
+}
